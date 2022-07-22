@@ -10,8 +10,12 @@
 <body>
     <nav>
         <a href="/">HOME</a>&nbsp;&nbsp;|
-        <a href="/watchlist">WATCHLIST</a>&nbsp;&nbsp;|
-        <a href="/portfolio">PORTFOLIO</a>&nbsp;&nbsp;|
-        <a href="">LOG IN</a>
+        <% if (user) { %>
+            <a href="/watchlist">WATCHLIST</a>&nbsp;&nbsp;|
+            <a href="/portfolio">PORTFOLIO</a>&nbsp;&nbsp;|
+            <a href="/logout">LOG OUT</a>
+        <% } else { %>
+            <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+        <% } %>
     </nav>
     
