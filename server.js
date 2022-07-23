@@ -7,12 +7,12 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
 
-var indexRouter = require('./routes/home');
-var usersRouter = require('./routes/users');
-
 require('dotenv').config();
 require('./config/database');
 require('./config/passport');
+
+var indexRouter = require('./routes/home');
+var usersRouter = require('./routes/users');
 
 var app = express();
 

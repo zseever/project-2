@@ -1,19 +1,30 @@
-const Stocks = require('../models/stocks');
+const Stocks = require('../models/stock');
 
 const fetch = require('node-fetch');
 const token = process.env.POLYGON_TOKEN;
 const rootURL = 'https://api.polygon.io/'
 
 module.exports = {
-    index
+    index,
+    fetchDailyStocks
+}
+
+function fetchDailyStocks() {
+    let today = new Date();
+    let d = today.getDate()-1;
+    let m = (today.getMonth()+1).length === 2 ? `${today.getMonth()+1}` : `0${today.getMonth()+1}`
+    let y = today.getFullYear();
+    today = `${y}-${m}-${d}`
+    fetch(`${rootURL}v2/aggs/grouped/locale/us/market/stocks/${today}?adjusted=true&apiKey=${token}`)
+    .then(res => res.json())
+    .then(stockData => {
+        console.log(`${rootURL}v2/aggs/grouped/locale/us/market/stocks/${today}?adjusted=true&apiKey=${token}`)
+        console.log(stockData.results);
+    })
 }
 
 function index(req, res) {
+    const stocks = fetchDailyStocks();
     res.render('home', { title: 'Daily Stocks' });
-    fetch(`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2022-07-21?adjusted=true&apiKey=GAhktOT6wvR7bPMp9650PCYwG2jUZ7yG`)
-    .then(res => res.json())
-    .then(stockData => {
-      console.log(stockData.results.find(x => x.T === 'AAPL'));
-    })
 
 }
