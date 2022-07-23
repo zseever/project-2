@@ -1,7 +1,11 @@
 <%- include('./partials/header.ejs') %>
 
-        <h1><%= title %></h1>
-        <p>Welcome to <%= title %></p>
+        <h1>Daily Stocks</h1>
+        <p>Welcome to Daily Stocks</p>
 
+
+        <% stock.forEach(function(s) { %>
+                <p><%= s.T %> - <%= s.daily[0].c %></p>
+        <% }) %>
 
 <%- include('./partials/footer.ejs') %>

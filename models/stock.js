@@ -3,16 +3,16 @@ const Schema = mongoose.Schema;
 
 const stockSchema = new Schema({
     T: String,
-    daily: {
+    daily: [{
         c: Number,
         h: Number,
         l: Number,
         n: Number,
         o: Number,
-        t: Number,
+        t: Date,
         v: Number,
         vw: Number,  
-    }
+    }]
 })
 
 module.exports = mongoose.model('Stock', stockSchema);

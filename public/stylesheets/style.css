@@ -8,16 +8,22 @@ body {
 a {
   color: #8fe590;
   text-decoration: none;
+  font-size:20px;
 }
 
 .login img {
   height: 20px;
 }
 
+a > img {
+  height:1vh;
+}
+
 nav {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   text-align: center;
+  height: 8vh;
 }
 
 header {

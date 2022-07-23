@@ -1,4 +1,4 @@
-const Stocks = require('../models/stock');
+const Stock = require('../models/stock');
 
 const fetch = require('node-fetch');
 const token = process.env.POLYGON_TOKEN;
@@ -6,25 +6,69 @@ const rootURL = 'https://api.polygon.io/'
 
 module.exports = {
     index,
-    fetchDailyStocks
+    fetchDailyStocks,
+    addStock
 }
+
 
 function fetchDailyStocks() {
     let today = new Date();
+    let yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
     let d = today.getDate()-1;
     let m = (today.getMonth()+1).length === 2 ? `${today.getMonth()+1}` : `0${today.getMonth()+1}`
     let y = today.getFullYear();
     today = `${y}-${m}-${d}`
+
     fetch(`${rootURL}v2/aggs/grouped/locale/us/market/stocks/${today}?adjusted=true&apiKey=${token}`)
     .then(res => res.json())
     .then(stockData => {
-        console.log(`${rootURL}v2/aggs/grouped/locale/us/market/stocks/${today}?adjusted=true&apiKey=${token}`)
-        console.log(stockData.results);
+        addStock(stockData);
     })
 }
 
 function index(req, res) {
-    const stocks = fetchDailyStocks();
-    res.render('home', { title: 'Daily Stocks' });
+    Stock.find({T: { $in: ['AAPL','META','GOOGL','TSLA','GME']}}, function(err, stock) {
+        res.render('home', { stock });
+    })
+    fetchDailyStocks();
+    // res.render('home')
+}
 
+
+function addStock(data) {
+    let today = new Date();
+    let yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    data.results.forEach(function(x) {
+        Stock.findOne({T:x.T}, function(err, s) {
+            if (!s) {
+                let stock = new Stock({
+                    T: x.T,
+                    daily: {
+                        c: x.c,
+                        h: x.h,
+                        l: x.l,
+                        n: x.n,
+                        o: x.o,
+                        t: new Date(x.t),
+                        v: x.v,
+                        vw: x.vw,  
+                    }
+                })
+                stock.save();
+            } else if (s.daily[s.daily.length-1].t.toDateString() !== yesterday.toDateString()) {
+                s.daily.push({
+                    c: x.c,
+                    h: x.h,
+                    l: x.l,
+                    n: x.n,
+                    o: x.o,
+                    t: new Date(x.t),
+                    v: x.v,
+                    vw: x.vw,  
+                })
+            }
+        })
+    })
 }
