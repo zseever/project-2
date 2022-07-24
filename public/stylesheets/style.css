@@ -66,7 +66,7 @@ header {
   width:25vw;
   padding:3vh;
   border: 1px solid #8fe590;
-  background-color: rgb(75, 72, 72);
+  background-color: rgb(75, 73, 73);
 }
 
 .stock-title {
@@ -75,7 +75,7 @@ header {
 }
 
 canvas {
-  background-color: white;
+  background-color: rgb(75, 73, 73);
   width:100%;
   height:100%;
 }
