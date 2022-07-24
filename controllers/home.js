@@ -1,6 +1,7 @@
 const Stock = require('../models/stock');
 
 const fetch = require('node-fetch');
+const stock = require('../models/stock');
 const token = process.env.POLYGON_TOKEN;
 const rootURL = 'https://api.polygon.io/'
 
@@ -28,11 +29,10 @@ function fetchDailyStocks() {
 }
 
 function index(req, res) {
-    Stock.find({T: { $in: ['AAPL','META','GOOGL','TSLA','GME']}}, function(err, stock) {
+    Stock.find({T: { $in: ['AAPL','AMZN','MSFT','META','NVDA','GOOG','WMT','TSLA','GME']}}, function(err, stock) {
         res.render('home', { stock });
     })
     fetchDailyStocks();
-    // res.render('home')
 }
 
 
@@ -68,6 +68,7 @@ function addStock(data) {
                     v: x.v,
                     vw: x.vw,  
                 })
+                stock.save();
             }
         })
     })

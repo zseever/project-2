@@ -1,11 +1,12 @@
 <%- include('./partials/header.ejs') %>
+        <div>
+                <h1>Daily Stocks</h1>
+                <p>Welcome to Daily Stocks</p>
 
-        <h1>Daily Stocks</h1>
-        <p>Welcome to Daily Stocks</p>
 
-
-        <% stock.forEach(function(s) { %>
-                <p><%= s.T %> - <%= s.daily[0].c %></p>
-        <% }) %>
+                <% stock.forEach(function(s) { %>
+                        <p><%= s.T %> - Price: $<%= s.daily[0].c %> - Daily Chg: $<%= (s.daily[0].o - s.daily[0].c).toFixed(2) %></p>
+                <% }) %>
+        </div>
 
 <%- include('./partials/footer.ejs') %>
