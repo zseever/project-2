@@ -1,12 +1,61 @@
 <%- include('./partials/header.ejs') %>
-        <div>
+        <div class="cont">
                 <h1>Daily Stocks</h1>
-                <p>Welcome to Daily Stocks</p>
-
-
-                <% stock.forEach(function(s) { %>
-                        <p><%= s.T %> - Price: $<%= s.daily[0].c %> - Daily Chg: $<%= (s.daily[0].o - s.daily[0].c).toFixed(2) %></p>
-                <% }) %>
+                <div class="stock-cont">
+                        <% stock.forEach(function(s) { %>
+                                <div class="stock">
+                                        <p class="stock-title"><%= s.T %></p>
+                                        <canvas id="<%= s.T %>"></canvas>
+                                        <script>
+                                                new Chart(document.getElementById("<%= s.T %>"), {
+                                                type: 'line',
+                                                data:{
+                                                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Aqua", "Forest", "Black","test"],
+                                                        datasets: [{
+                                                        label: '',
+                                                        data: [50, 40, 30, 95, 25, 33, 90, 35, 85, 95],
+                                                        backgroundColor: [
+                                                                'green'
+                                                        ],
+                                                        borderColor: [
+                                                            'green'
+                                                        ],
+                                                        borderWidth: 1
+                                                        }]
+                                                },
+                                                options: {
+                                                        plugins: {
+                                                                legend: false,
+                                                        },
+                                                        legend: {
+                                                                enabled: false,
+                                                        },
+                                                        scales: {
+                                                        
+                                                        yAxes: [{
+                                                        ticks: {
+                                                        
+                                                                min: 0,
+                                                                max: 100,
+                                                                callback: function(value){return value+ "%"}
+                                                                },  
+                                                                scaleLabel: {
+                                                                display: false,
+                                                                labelString: "Percentage"
+                                                                }
+                                                        }]
+                                                        },
+                                                        title: {
+                                                        display: false,
+                                                        text: 'Micronutrients',
+                                                        fontSize: 20
+                                                },
+                                                }
+                                                }); 
+                                        </script>
+                                </div>
+                        <% }) %>
+                </div>
         </div>
 
 <%- include('./partials/footer.ejs') %>
