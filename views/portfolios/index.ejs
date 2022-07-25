@@ -1,7 +1,15 @@
 <%- include('../partials/header') %>
 
     <h1><%= user.name %> - Stock Portfolio</h1>
-    
+    <% userLists.portfolio.forEach(function(stock) { %>
+        <div>
+            <p>Stock: <%= stock.T %></p>
+            <p>Shares Owned: <%= stock.shares %></p>
+            <p>Avg Price Paid: $<%= stock.avgPrice %></p>
+        </div>
+    <% }) %>
+
+
     <a href="/portfolios/new">Add Stock to Portfolio</a>
 
 <%- include('../partials/footer') %>
