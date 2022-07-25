@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+    <h1>Add Stock to Portfolio</h1>
+    <form action="/portfolios" method="POST">
+        <label>Stock Ticker</label>
+        <input type="text" name="T">
+        <br>
+        <label># of Shares Owned</label>
+        <input type="number" name="shares">
+        <br>
+        <label>Average Price Paid</label>
+        <input type="number" name="avgPrice">
+        <br>
+        <button type="submit">Add Stock</button>
+    </form>
+
+
+<%- include('../partials/footer') %>
