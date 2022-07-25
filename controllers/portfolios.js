@@ -1,18 +1,41 @@
 const UserStockList = require('../models/portfolio');
-const User = require('../models/user');
+const Stock = require('../models/stock');
 
 module.exports = {
     index,
     new: newStock,
-    create
+    create,
+    edit,
+    update
 }
 
 function index(req, res) {
     UserStockList.findOne({user:req.user._id}, (err,userLists) => {
-            res.render('portfolios/index', { userLists });
+        let userStocks = userLists.portfolio.map(x => x.T)
+        Stock.find({T: { $in: userStocks}}, (err, stocks) => {
+            let stocksList = {};
+            stocks.forEach(x => {
+                stocksList[x.T] = x.daily[x.daily.length-1].c;
+            });
+            let pnl = 0;
+            userLists.portfolio.forEach(function(stock) {
+                pnl += ((stocksList[stock.T] - stock.avgPrice)*stock.shares)
+            });
+            res.render('portfolios/index', { userLists , stocksList, pnl });
+        })
     })
 }
 
+function update(req, res) {
+
+};
+
+function edit(req, res) {
+    UserStockList.findOne({user:req.user._id}, (err,userLists) => {
+        let editStock = userLists.portfolio.find(stock => stock.T === req.params.id)
+        res.render('portfolios/edit', { editStock })
+    })
+}
 
 function newStock(req, res) {
     res.render('portfolios/new');
