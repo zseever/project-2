@@ -3,6 +3,7 @@
                 <h1>Daily Stocks</h1>
                 <div class="stock-cont">
                         <% stock.forEach(function(s) { %>
+                                <a href="">
                                 <div class="stock">
                                         <p class="stock-title"><%= s.T %></p>
                                         <canvas id="<%= s.T %>"></canvas>
@@ -54,6 +55,7 @@
                                                 }); 
                                         </script>
                                 </div>
+                                </a>
                         <% }) %>
                 </div>
         </div>

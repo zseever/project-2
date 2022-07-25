@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/user');
+const UserStockList = require('../models/portfolio');
 
 passport.use(
     new GoogleStrategy(
@@ -33,7 +34,15 @@ passport.use(
             email: profile.emails[0].value,
             avatar: profile.photos[0].value
           });
-          return cb(null, user);
+          let tempUserId = user._id
+          let tempUserName = user.name
+          let tempUserAvatar = user.avatar
+          userTwo = await UserStockList.create({
+            user: tempUserId,
+            userName: tempUserName,
+            userAvatar: tempUserAvatar
+          })
+          return cb(null, user, userTwo);
         } catch (err) {
           // An error occured
           return cb(err);

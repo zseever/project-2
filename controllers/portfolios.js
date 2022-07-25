@@ -9,9 +9,10 @@ module.exports = {
 
 function index(req, res) {
     UserStockList.findOne({user:req.user._id}, (err,userLists) => {
-        res.render('portfolios/index', { userLists });
+            res.render('portfolios/index', { userLists });
     })
 }
+
 
 function newStock(req, res) {
     res.render('portfolios/new');

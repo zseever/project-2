@@ -1,15 +1,31 @@
 <%- include('../partials/header') %>
 
-    <h1><%= user.name %> - Stock Portfolio</h1>
-    <% userLists.portfolio.forEach(function(stock) { %>
-        <div>
-            <p>Stock: <%= stock.T %></p>
-            <p>Shares Owned: <%= stock.shares %></p>
-            <p>Avg Price Paid: $<%= stock.avgPrice %></p>
-        </div>
-    <% }) %>
+    <div class="main-container">
+        <h1><%= user.name %> - Stock Portfolio</h1>
+        <table id="portfolio-table">
+            <thead>
+                <tr>
+                <th>Stock</th>
+                <th>Shares<br>Owned</th>
+                <th>Avg<br>Price</th>
+                <th>Profit/Loss</th>
+                <th>Edit</th>
+                </tr>
+          </thead>
+          <tbody>
+            <% userLists.portfolio.forEach(function(stock) { %>
+              <tr>
+                <td><%= stock.T %></td>
+                <td><%= stock.shares %></td>
+                <td><%= stock.avgPrice %></td>
+                <td>P/L</td>
+                <td><button>Edit</button></td>
+              </tr>
+              <% }); %>
+            </tbody>
+        </table>
+        <a class="add-button" href="/portfolios/new">Add Stock to Portfolio</a>
+    </div>
 
-
-    <a href="/portfolios/new">Add Stock to Portfolio</a>
 
 <%- include('../partials/footer') %>

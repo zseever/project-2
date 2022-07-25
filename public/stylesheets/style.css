@@ -10,11 +10,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: rgb(22, 21, 21);
   color: #8fe590;
-  display:grid;
+  /* display:grid;
   grid-template-rows: 1fr 19fr;
   grid-template-areas:
     "header"
-    "main";
+    "main"; */
 }
 
 a {
@@ -29,6 +29,14 @@ a {
 
 a > img {
   height:1vh;
+}
+
+.main-container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
 }
 
 nav {
@@ -78,4 +86,20 @@ canvas {
   background-color: rgb(75, 73, 73);
   width:100%;
   height:100%;
+}
+
+.add-button {
+  border: 1px solid #8fe590;
+  background-color: rgb(75, 73, 73);
+  padding:1vh;
+
+}
+
+th, td {
+  width: 15vw;
+  border: 1px solid #8fe590;
+}
+
+td {
+  text-align: center;
 }
