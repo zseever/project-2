@@ -3,7 +3,8 @@ const Stock = require('../models/stock');
 
 module.exports = {
     index,
-    create
+    create,
+    delete: deleteStock
 }
 
 function index(req, res) {
@@ -42,3 +43,11 @@ function create(req, res) {
     })
 }
 
+function deleteStock(req, res) {
+    UserStockList.findOne({user: req.user._id}, (err, userLists) => {
+        let idx = userLists.watchlist.findIndex(x => x.T === req.params.id)
+        userLists.watchlist.splice(idx,1);
+        userLists.save();
+        res.redirect('/watchlists')
+    })
+}

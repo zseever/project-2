@@ -100,11 +100,26 @@ canvas {
 }
 
 .add-button {
-  border: 1px solid #8fe590;
+  border: 0.2vh solid #8fe590;
   background-color: rgb(75, 73, 73);
-  padding:1vh;
-
+  padding:.8vh;
+  color: #8fe590;
+  font-size:1.5vmin;
 }
+
+.add-wl-button {
+  border: 0.2vh solid #8fe590;
+  background-color: rgb(75, 73, 73);
+  padding:.5vh;
+  color: #8fe590;
+  font-size:1.3vmin;
+}
+
+.add-wl-button:hover , .add-button:hover {
+  border:0.2vh solid white;
+  cursor: pointer;
+}
+
 
 th, td {
   width: 12vw;
@@ -146,3 +161,11 @@ td {
   justify-content: space-around;
   align-items: center;
 }
+
+
+
+#add-watchlist label, #add-watchlist input {
+  height:2vh;
+  width:5vw;
+}
+

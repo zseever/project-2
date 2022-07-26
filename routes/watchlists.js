@@ -5,6 +5,7 @@ const isLoggedIn = require('../config/auth');
 
 router.get('/', isLoggedIn, watchlistsCtrl.index);
 router.post('/', isLoggedIn, watchlistsCtrl.create);
+router.delete('/:id', isLoggedIn, watchlistsCtrl.delete);
 
 
 module.exports = router;

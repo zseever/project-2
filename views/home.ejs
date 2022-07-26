@@ -1,8 +1,8 @@
 <%- include('./partials/header.ejs') %>
         <div class="cont">
                 <div class="home-header-cont">
-                        <form>
-                               <input type="text" value="Enter Stock Ticker">
+                        <form action="/search" method="GET">
+                               <input type="text" name="T" value="Enter Stock Ticker">
                                <button type="submit">Search</button>
                         </form>
                         <h1 class="daily-stock-head">Daily Stocks</h1>

@@ -36,41 +36,82 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    StockInfo.findOne({ticker:req.params.id}, (err, stock) => {
-        if (!stock) {
-            fetch(`${rootURL}v3/reference/tickers/${req.params.id}?apiKey=${token}`)
-            .then(res => res.json())
-            .then(s => {
-                console.log(s);
-                let sInfo = new StockInfo ({
-                    ticker: s.results.ticker,
-                    name: s.results.name,
-                    description: s.results.description,
-                    homepage_url: s.results.homepage_url,
-                    market_cap: s.results.market_cap,
-                    employees: s.results.total_employees,
-                    shares_outstanding: s.results.share_class_shares_outstanding,
-                    currency: s.results.currency_name,
-                    address: {
-                        address1: s.results.address.address1,
-                        city: s.results.address.city,
-                        zipcode: s.results.address.postal_code,
-                        state: s.results.address.state,
-                    },
-                    branding: {
-                        icon_url: s.results.branding.icon_url,
-                        logo_url: s.results.branding.logo_url,
-                    }
-                });
-                console.log('true path');
-                sInfo.save();
-                res.render('show', { stock: sInfo });
-            });  
-        } else {
-            console.log('false path')
-            res.render('show', { stock });
-        }
-    })
+    console.log(req.body);
+    console.log(req.query);
+    console.log(req.params);
+    if (req.params.id === 'search') {
+        StockInfo.findOne({ticker:req.query.T}, (err, stock) => {
+            if (!stock) {
+                fetch(`${rootURL}v3/reference/tickers/${req.params.id}?apiKey=${token}`)
+                .then(res => res.json())
+                .then(s => {
+                    console.log(s);
+                    let sInfo = new StockInfo ({
+                        ticker: s.results.ticker,
+                        name: s.results.name,
+                        description: s.results.description,
+                        homepage_url: s.results.homepage_url,
+                        market_cap: s.results.market_cap,
+                        employees: s.results.total_employees,
+                        shares_outstanding: s.results.share_class_shares_outstanding,
+                        currency: s.results.currency_name,
+                        address: {
+                            address1: s.results.address.address1,
+                            city: s.results.address.city,
+                            zipcode: s.results.address.postal_code,
+                            state: s.results.address.state,
+                        },
+                        branding: {
+                            icon_url: s.results.branding.icon_url,
+                            logo_url: s.results.branding.logo_url,
+                        }
+                    });
+                    console.log('true path');
+                    sInfo.save();
+                    res.render('show', { stock: sInfo });
+                });  
+            } else {
+                console.log('false path')
+                res.render('show', { stock });
+            }
+        })        
+    } else {
+        StockInfo.findOne({ticker:req.params.id}, (err, stock) => {
+            if (!stock) {
+                fetch(`${rootURL}v3/reference/tickers/${req.params.id}?apiKey=${token}`)
+                .then(res => res.json())
+                .then(s => {
+                    console.log(s);
+                    let sInfo = new StockInfo ({
+                        ticker: s.results.ticker,
+                        name: s.results.name,
+                        description: s.results.description,
+                        homepage_url: s.results.homepage_url,
+                        market_cap: s.results.market_cap,
+                        employees: s.results.total_employees,
+                        shares_outstanding: s.results.share_class_shares_outstanding,
+                        currency: s.results.currency_name,
+                        address: {
+                            address1: s.results.address.address1,
+                            city: s.results.address.city,
+                            zipcode: s.results.address.postal_code,
+                            state: s.results.address.state,
+                        },
+                        branding: {
+                            icon_url: s.results.branding.icon_url,
+                            logo_url: s.results.branding.logo_url,
+                        }
+                    });
+                    console.log('true path');
+                    sInfo.save();
+                    res.render('show', { stock: sInfo });
+                });  
+            } else {
+                console.log('false path')
+                res.render('show', { stock });
+            }
+        })
+    }
 }
 
 

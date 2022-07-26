@@ -3,11 +3,10 @@
     <div class="main-container">
         <h1><%= user.name %> - Stock Watchlist</h1>
         <form id="add-watchlist" action="/watchlists" method="POST">
-            <label>Enter Stock Ticker</label>
+            <label>Stock Ticker</label>
             <input type="text" name="T">
-            <button type="submit">Add Stock to Watchlist</button>
+            <button class="add-wl-button" type="submit">Add Stock to Watchlist</button>
         </form>
-        <a class="add-button" href="/watchlists/new">Add Stock to Watchlist</a>
         <table id="portfolio-table">
             <thead>
                 <tr>
@@ -21,12 +20,12 @@
           <tbody>
             <% userLists.watchlist.forEach(function(stock) { %>
               <tr>
-                <td><a href="/<%= stock.T %>"></a><%= stock.T %></td>
+                <td><a href="/<%= stock.T %>"><%= stock.T %></a></td>
                 <td><%= stocksList[stock.T].close %></td>
                 <td><%= (stocksList[stock.T].close - stocksList[stock.T].open).toFixed(2) %></td>
                 <td><%= stocksList[stock.T].volume.toFixed(0).toLocaleString('en-US') %></td>
                 <td class="small-col">
-                    <form action="/watchlists/<%  %>" method="POST">
+                    <form action="/watchlists/<%= stock.T %>?_method=DELETE" method="POST">
                         <button class="del-btn">X</button></td>
                     </form>
               </tr>
