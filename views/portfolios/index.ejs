@@ -11,8 +11,8 @@
                 <th>Avg<br>Price Paid</th>
                 <th>Current Price</th>
                 <th>Profit/Loss</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th class="small-col">Edit</th>
+                <th class="small-col">Delete</th>
                 </tr>
           </thead>
           <tbody>
@@ -23,12 +23,12 @@
                 <td>$<%= stock.avgPrice %></td>
                 <td>$<%= stocksList[stock.T] %></td>
                 <td>$<%= ((stocksList[stock.T] - stock.avgPrice)*stock.shares).toFixed(2) %></td>
-                <td>
-                    <form class="edit-btn" action="/portfolios/<%= stock.T %>/edit" method="GET">
-                        <button>Edit</button>
+                <td class="small-col">
+                    <form action="/portfolios/<%= stock.T %>/edit" method="GET">
+                        <button class="edit-btn">Edit</button>
                     </form>
                 </td>
-                <td>
+                <td class="small-col">
                     <form action="/portfolios/<%= stock.T %>/?_method=DELETE" method="POST">
                         <button class="del-btn">X</button></td>
                     </form>

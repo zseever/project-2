@@ -103,3 +103,28 @@ th, td {
 td {
   text-align: center;
 }
+
+.small-col {
+  width:5vw;
+}
+
+.del-btn {
+  background-color: rgb(208, 62, 62);
+  border:0.2vh solid black;
+}
+
+.del-btn:hover {
+  border:0.2vh solid white;
+  cursor: pointer;
+}
+
+.edit-btn {
+  color: #8fe590;
+  background-color:rgb(75, 73, 73);
+  border:0.2vh solid black;
+}
+
+.edit-btn:hover {
+  border:0.2vh solid white;
+  cursor: pointer;
+}

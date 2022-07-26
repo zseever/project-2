@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+
 const stockSchema = new Schema({
     T: String,
     daily: [{
@@ -14,5 +16,7 @@ const stockSchema = new Schema({
         vw: Number,  
     }]
 })
+
+
 
 module.exports = mongoose.model('Stock', stockSchema);
