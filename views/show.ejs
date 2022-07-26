@@ -2,7 +2,12 @@
 
 <h1><%= stock.name %></h1>
 <p>Ticker: <%= stock.ticker %></p>
-
+<p>Description: <%= stock.description %></p>
+<a class="stock-url" href="<%= stock.homepage_url%>" target="_blank"><%= stock.name %> Website</a>
+<p>Address: <%= stock.address.address1 %>, <%= stock.address.city %>, <%= stock.address.state %>, <%= stock.address.zipcode %></p>
+<p>Currency: <%= stock.currency.toUpperCase() %></p>
+<p>Employees: <%= stock.employees.toLocaleString('en-US') %></p>
+<p>Shares Outstanding: <%= stock.shares_outstanding.toLocaleString('en-US') %></p>
 
 
 <%- include('./partials/footer') %>

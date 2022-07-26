@@ -41,6 +41,7 @@ function show(req, res) {
             fetch(`${rootURL}v3/reference/tickers/${req.params.id}?apiKey=${token}`)
             .then(res => res.json())
             .then(s => {
+                console.log(s);
                 let sInfo = new StockInfo ({
                     ticker: s.results.ticker,
                     name: s.results.name,

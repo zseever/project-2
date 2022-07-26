@@ -42,9 +42,9 @@ app.use(function(req, res, next) {
   next();
 })
 
+app.use('/portfolios', portfolioRouter);
 app.use('/', homeRouter);
 app.use('/users', usersRouter);
-app.use('/portfolios', portfolioRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,7 +2,7 @@
 
     <div class="main-container">
         <h1><%= user.name %> - Stock Portfolio</h1>
-        <h2>Total PnL: $<%= pnl %> </h2>
+        <h2>Total PnL: $<%= pnl.toFixed(2) %> </h2>
         <table id="portfolio-table">
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
           <tbody>
             <% userLists.portfolio.forEach(function(stock) { %>
               <tr>
-                <td><%= stock.T %></td>
+                <td><a href="/<%= stock.T %>"><%= stock.T %></a></td>
                 <td><%= stock.shares %></td>
                 <td>$<%= stock.avgPrice %></td>
                 <td>$<%= stocksList[stock.T] %></td>

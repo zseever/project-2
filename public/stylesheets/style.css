@@ -17,11 +17,22 @@ body {
     "main"; */
 }
 
-a {
+nav > a {
   color: #8fe590;
   text-decoration: none;
   font-size:20px;
 }
+
+a {
+  color: #8fe590;
+  text-decoration: none;
+}
+
+td a {
+  display:block;
+  width:100%;
+}
+
 
 .login img {
   height: 20px;
