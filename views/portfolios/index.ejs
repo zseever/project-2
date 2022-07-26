@@ -24,11 +24,14 @@
                 <td>$<%= stocksList[stock.T] %></td>
                 <td>$<%= ((stocksList[stock.T] - stock.avgPrice)*stock.shares).toFixed(2) %></td>
                 <td>
-                    <form action="/portfolios/<%= stock.T %>/edit" method="GET">
+                    <form class="edit-btn" action="/portfolios/<%= stock.T %>/edit" method="GET">
                         <button>Edit</button>
                     </form>
                 </td>
-                <td><button>X</button></td>
+                <td>
+                    <form action="/portfolios/<%= stock.T %>/?_method=DELETE" method="POST">
+                        <button class="del-btn">X</button></td>
+                    </form>
               </tr>
               <% }); %>
             </tbody>

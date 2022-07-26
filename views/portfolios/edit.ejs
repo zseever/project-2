@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <h1>Edit Portfolio <%= editStock.T %> Stock</h1>
-<form id="add-stock-portfolio" action="/portfolios/:id/?_method=PUT" method="POST">
+<form id="add-stock-portfolio" action="/portfolios/<%= editStock.T %>?_method=PUT" method="POST">
     <label># of Shares Owned</label>
     <input type="number" value="<%= editStock.shares %>" name="shares">
     <br>

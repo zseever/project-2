@@ -8,6 +8,7 @@ router.get('/new', isLoggedIn, portfoliosCtrl.new);
 router.post('/', isLoggedIn, portfoliosCtrl.create);
 router.get('/:id/edit', isLoggedIn, portfoliosCtrl.edit)
 router.put('/:id', isLoggedIn, portfoliosCtrl.update);
+router.delete('/:id', isLoggedIn, portfoliosCtrl.delete);
 
 
 module.exports = router;

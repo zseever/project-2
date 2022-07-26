@@ -6,7 +6,8 @@ module.exports = {
     new: newStock,
     create,
     edit,
-    update
+    update,
+    delete: deleteStock,
 }
 
 function index(req, res) {
@@ -26,8 +27,36 @@ function index(req, res) {
     })
 }
 
-function update(req, res) {
+function deleteStock(req, res) {
+    UserStockList.findOne({user:req.user._id}, (err, userLists) => {
+        let idx = userLists.portfolio.findIndex(x => x.T === req.params.id);
+        userLists.portfolio.splice(idx, 1);
+        userLists.save();
+        res.redirect('/portfolios');
+    })
+}
 
+function update(req, res) {
+    UserStockList.findOne({user:req.user._id})
+        .where('T').equals(req.params.id)
+        .exec(function(err, stock) {
+            let idx = stock.portfolio.findIndex(x => x.T === req.params.id)
+            stock.portfolio[idx].shares = req.body.shares;
+            stock.portfolio[idx].avgPrice = req.body.avgPrice;
+            stock.save();
+            res.render('portfolios/index')
+        })
+        
+        
+        // (err,userLists) => {
+        // console.log(req.params.id);
+        // console.log(userLists);
+        // let stock = userLists.portfolio.find(x => x.T === req.params.id);
+        //     stock.shares = req.body.shares;
+        //     stock.avgPrice = req.body.avgPrice;
+        //     console.log(stock);
+        //     res.redirect('/portfolios');
+        // })
 };
 
 function edit(req, res) {
