@@ -12,7 +12,11 @@ function index(req, res) {
         Stock.find({T: { $in: userStocks}}, (err, stocks) => {
             let stocksList = {};
             stocks.forEach(x => {
-                stocksList[x.T] = x.daily[x.daily.length-1].c;
+                stocksList[x.T] = {
+                    close: x.daily[x.daily.length-1].c,
+                    open: x.daily[x.daily.length-1].o,
+                    volume: x.daily[x.daily.length-1].v
+                };
             });
         res.render('watchlists/index', { userLists, stocksList })
         });
@@ -34,7 +38,7 @@ function create(req, res) {
             })
             newUserList.save();
         }
+        res.redirect('/watchlists');    
     })
-    res.redirect('/watchlists');    
 }
 

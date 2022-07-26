@@ -1,6 +1,13 @@
 <%- include('./partials/header.ejs') %>
         <div class="cont">
-                <h1>Daily Stocks</h1>
+                <div class="home-header-cont">
+                        <form>
+                               <input type="text" value="Enter Stock Ticker">
+                               <button type="submit">Search</button>
+                        </form>
+                        <h1 class="daily-stock-head">Daily Stocks</h1>
+                        <p>Sample Text</p>
+                </div>
                 <div class="stock-cont">
                         <% stock.forEach(function(s) { %>
                                 <a href="/<%= s.T %>">

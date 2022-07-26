@@ -12,23 +12,21 @@
             <thead>
                 <tr>
                 <th>Stock</th>
-                <th>Shares<br>Owned</th>
-                <th>Avg<br>Price Paid</th>
-                <th>Current Price</th>
-                <th>Profit/Loss</th>
+                <th>Current<br>Stock Price</th>
+                <th>Daily<br>Price Change</th>
+                <th>Daily<br>Volume</th>
                 <th class="small-col">Delete</th>
                 </tr>
           </thead>
           <tbody>
             <% userLists.watchlist.forEach(function(stock) { %>
               <tr>
-                <td><a href=""></a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><a href="/<%= stock.T %>"></a><%= stock.T %></td>
+                <td><%= stocksList[stock.T].close %></td>
+                <td><%= (stocksList[stock.T].close - stocksList[stock.T].open).toFixed(2) %></td>
+                <td><%= stocksList[stock.T].volume.toFixed(0).toLocaleString('en-US') %></td>
                 <td class="small-col">
-                    <form action="" method="POST">
+                    <form action="/watchlists/<%  %>" method="POST">
                         <button class="del-btn">X</button></td>
                     </form>
               </tr>

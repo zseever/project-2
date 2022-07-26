@@ -139,3 +139,10 @@ td {
   border:0.2vh solid white;
   cursor: pointer;
 }
+
+.home-header-cont {
+  display:flex;
+  gap: 20vw 0;
+  justify-content: space-around;
+  align-items: center;
+}

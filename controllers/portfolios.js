@@ -44,7 +44,7 @@ function update(req, res) {
             stock.portfolio[idx].shares = req.body.shares;
             stock.portfolio[idx].avgPrice = req.body.avgPrice;
             stock.save();
-            res.render('portfolios/index')
+            res.redirect('/portfolios')
         })
         
         
@@ -85,6 +85,6 @@ function create(req, res) {
             })
             newUserList.save();
         }
+        res.redirect('/portfolios');
     })
-    res.redirect('/portfolios');
 }
