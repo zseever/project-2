@@ -13,7 +13,8 @@ require('./config/passport');
 
 var homeRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
-const portfolioRouter = require('./routes/portfolios');
+const portfoliosRouter = require('./routes/portfolios');
+const watchlistsRouter = require('./routes/watchlists');
 
 var app = express();
 
@@ -42,7 +43,8 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.use('/portfolios', portfolioRouter);
+app.use('/watchlists', watchlistsRouter);
+app.use('/portfolios', portfoliosRouter);
 app.use('/', homeRouter);
 app.use('/users', usersRouter);
 

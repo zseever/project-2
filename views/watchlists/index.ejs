@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+    <div class="main-container">
+        <h1><%= user.name %> - Stock Watchlist</h1>
+        <form id="add-watchlist" action="/watchlists" method="POST">
+            <label>Enter Stock Ticker</label>
+            <input type="text" name="T">
+            <button type="submit">Add Stock to Watchlist</button>
+        </form>
+        <a class="add-button" href="/watchlists/new">Add Stock to Watchlist</a>
+        <table id="portfolio-table">
+            <thead>
+                <tr>
+                <th>Stock</th>
+                <th>Shares<br>Owned</th>
+                <th>Avg<br>Price Paid</th>
+                <th>Current Price</th>
+                <th>Profit/Loss</th>
+                <th class="small-col">Delete</th>
+                </tr>
+          </thead>
+          <tbody>
+            <% userLists.watchlist.forEach(function(stock) { %>
+              <tr>
+                <td><a href=""></a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="small-col">
+                    <form action="" method="POST">
+                        <button class="del-btn">X</button></td>
+                    </form>
+              </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+
+<%- include('../partials/footer') %>
