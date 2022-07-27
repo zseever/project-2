@@ -2,14 +2,14 @@
         <div class="cont">
                 <div class="home-header-cont">
                         <form action="/search" method="GET">
-                               <input type="text" name="T" value="Enter Stock Ticker">
-                               <button type="submit">Search</button>
+                               <input type="text" name="T">
+                               <button type="submit">Search Ticker</button>
                         </form>
                         <h1 class="daily-stock-head">Daily Stocks</h1>
                         <p>Sample Text</p>
                 </div>
                 <div class="stock-cont">
-                        <% stock.forEach(function(s) { %>
+                        <% dailyStocks.forEach(function(s) { %>
                                 <a href="/<%= s.T %>">
                                 <div class="stock">
                                         <p class="stock-title"><%= s.T %></p>
@@ -18,40 +18,34 @@
                                                 new Chart(document.getElementById("<%= s.T %>"), {
                                                 type: 'line',
                                                 data:{
-                                                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Aqua", "Forest", "Black","test"],
+                                                labels: [<%= s.labels %>],
                                                         datasets: [{
                                                         label: '',
-                                                        data: [50, 40, 30, 95, 25, 33, 90, 35, 85, 95],
-                                                        backgroundColor: [
-                                                                '#8fe590'
-                                                        ],
-                                                        borderColor: [
-                                                            '#8fe590'
-                                                        ],
+                                                        data: [<%=  s.data %>],
+                                                        backgroundColor: '#8fe590',
+                                                        borderColor: '#8fe590',
                                                         borderWidth: 1
                                                         }]
                                                 },
                                                 options: {
-                                                        plugins: {
-                                                                legend: false,
-                                                        },
-                                                        legend: {
-                                                                enabled: false,
-                                                        },
+                                                        plugins: {legend: false,},
+                                                        legend: {enabled: false,},
                                                         scales: {
-                                                        
-                                                        yAxes: [{
-                                                        ticks: {
-                                                        
-                                                                min: 0,
-                                                                max: 100,
-                                                                callback: function(value){return value+ "%"}
-                                                                },  
-                                                                scaleLabel: {
-                                                                display: false,
-                                                                labelString: "Percentage"
-                                                                }
-                                                        }]
+                                                                yAxes: [{
+                                                                ticks: {
+                                                                
+                                                                        min: 0,
+                                                                        max: 252,
+                                                                        callback: function(value){return value+ "%"}
+                                                                        },  
+                                                                        scaleLabel: {
+                                                                        display: false,
+                                                                        labelString: "Percentage"
+                                                                        }
+                                                                }],
+                                                                xAxes: [{
+                                                                        type:'time',
+                                                                }]
                                                         },
                                                         title: {
                                                         display: false,

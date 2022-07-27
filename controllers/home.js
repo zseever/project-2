@@ -13,14 +13,20 @@ module.exports = {
     show
 }
 
-// function createCandleStickChart(barCount,initialDate) {
-
-// }
-
 
 function index(req, res) {
     Stock.find({T: { $in: ['AAPL','AMZN','MSFT','META','NVDA','GOOG','WMT','TSLA','GME']}}, function(err, stock) {
-        res.render('home', { stock });
+        let dailyStocks = stock.map(x => ({
+            T: x.T,
+            data: x.daily.map(y => y.c),
+            labels: x.daily.map(y => y.t.toLocaleDateString('en-US'))
+        }))
+        // stock.forEach(s => {
+        //     dailyStocks.T = s.T;
+        //     dailyStocks.data = s.daily.map(x => x.c)
+        //     dailyStocks.labels = s.daily.map(x => x.t.toLocaleDateString('en-US'))
+        // });
+        res.render('home', { dailyStocks });
     })
     Stock.findOne({}, function(err, stock) {
         let today = new Date();
@@ -36,16 +42,17 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    console.log(req.body);
-    console.log(req.query);
-    console.log(req.params);
     if (req.params.id === 'search') {
         StockInfo.findOne({ticker:req.query.T}, (err, stock) => {
             if (!stock) {
-                fetch(`${rootURL}v3/reference/tickers/${req.params.id}?apiKey=${token}`)
+                fetch(`${rootURL}v3/reference/tickers/${req.query.T}?apiKey=${token}`)
                 .then(res => res.json())
                 .then(s => {
                     console.log(s);
+                    if (s.status === 'NOT_FOUND') {
+                        res.redirect('/');
+                        return;
+                    }
                     let sInfo = new StockInfo ({
                         ticker: s.results.ticker,
                         name: s.results.name,
@@ -148,7 +155,6 @@ function fetchDailyStocks() {
                         })
                         stock.save();
                     } else if (s.daily[s.daily.length-1].t.toDateString() !== yesterday.toDateString()) {
-                        console.log('attempting to push new data')
                         s.daily.push({
                             c: x.c,
                             h: x.h,
@@ -166,6 +172,8 @@ function fetchDailyStocks() {
         }
     })
 }
+
+
 
 // function addStock(data) {
 //     let today = new Date();
