@@ -1,7 +1,7 @@
 <%- include('./partials/header.ejs') %>
         <div class="cont">
                 <div class="home-header-cont">
-                        <form action="/search" method="GET">
+                        <form action="stocks/search" method="GET">
                                <input type="text" name="T">
                                <button type="submit">Search Ticker</button>
                         </form>
@@ -10,7 +10,7 @@
                 </div>
                 <div class="stock-cont">
                         <% dailyStocks.forEach(function(s) { %>
-                                <a href="/<%= s.T %>">
+                                <a href="/stocks/<%= s.T %>">
                                 <div class="stock">
                                         <p class="stock-title"><%= s.T %></p>
                                         <canvas id="<%= s.T %>"></canvas>

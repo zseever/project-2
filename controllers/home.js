@@ -9,8 +9,7 @@ const rootURL = 'https://api.polygon.io/'
 module.exports = {
     index,
     fetchDailyStocks,
-    // addStock,
-    show
+    // show
 }
 
 
@@ -42,6 +41,8 @@ function index(req, res) {
 }
 
 function show(req, res) {
+    console.log(req.params);
+    console.log('show function running')
     if (req.params.id === 'search') {
         StockInfo.findOne({ticker:req.query.T}, (err, stock) => {
             if (!stock) {

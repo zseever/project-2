@@ -28,6 +28,6 @@ router.get('/logout', function(req, res) {
   })
 })
 
-router.get('/:id', homeCtrl.show);
+// router.get('/:id', homeCtrl.show);
 
 module.exports = router;
