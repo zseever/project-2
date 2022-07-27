@@ -10,11 +10,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: rgb(22, 21, 21);
   color: #8fe590;
-  /* display:grid;
-  grid-template-rows: 1fr 19fr;
-  grid-template-areas:
-    "header"
-    "main"; */
 }
 
 nav > a {
@@ -51,8 +46,6 @@ a > img {
 }
 
 nav {
-  grid-area: header;
-  /* display: flex; */
   justify-content: center;
   text-align: center;
   height: 5vh;
@@ -65,7 +58,6 @@ header {
 }
 
 .cont {
-  grid-area: main;
   text-align: center;
 }
 
@@ -77,26 +69,22 @@ header {
 }
 
 .stock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height:20vh;
-  width:25vw;
-  padding:3vh;
+  height:25vh;
+  width:30vw;
   border: 1px solid #8fe590;
   background-color: rgb(75, 73, 73);
+  display:grid;
+  grid-template-rows: 11fr 11fr;
+
 }
 
 .stock-title {
-  font-size:24px;
+  /* font-size: */
   font-weight: bold;
 }
 
 canvas {
-  background-color: rgb(75, 73, 73);
-  width:100%;
-  height:100%;
+  /* background-color: rgb(75, 73, 73); */
 }
 
 .add-button {
@@ -113,6 +101,17 @@ canvas {
   padding:.5vh;
   color: #8fe590;
   font-size:1.3vmin;
+}
+
+.grn-btn {
+  border: 0.2vh solid #8fe590;
+  background-color: rgb(75, 73, 73);
+  padding:.5vh;
+  color: #8fe590;  
+}
+
+.btn-input {
+  height:2.1vh;
 }
 
 .add-wl-button:hover , .add-button:hover {
@@ -156,16 +155,26 @@ td {
 }
 
 .home-header-cont {
-  display:flex;
+  /* display:flex;
   gap: 20vw 0;
   justify-content: space-around;
-  align-items: center;
+  align-items: center; */
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
+.home-header-cont form {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  align-self:center;
+}
 
+.home-header-cont h1 {
+  grid-column-start: 3;
+  grid-column-end: span 1;
+}
 
 #add-watchlist label, #add-watchlist input {
   height:2vh;
   width:5vw;
 }
-

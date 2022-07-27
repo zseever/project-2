@@ -2,11 +2,11 @@
         <div class="cont">
                 <div class="home-header-cont">
                         <form action="stocks/search" method="GET">
-                               <input type="text" name="T">
-                               <button type="submit">Search Ticker</button>
+                               <input class="btn-input" type="text" name="T">
+                               <button type="submit" class="grn-btn">Search Ticker</button>
                         </form>
                         <h1 class="daily-stock-head">Daily Stocks</h1>
-                        <p>Sample Text</p>
+                        
                 </div>
                 <div class="stock-cont">
                         <% dailyStocks.forEach(function(s) { %>
@@ -18,41 +18,32 @@
                                                 new Chart(document.getElementById("<%= s.T %>"), {
                                                 type: 'line',
                                                 data:{
-                                                labels: [<%= s.labels %>],
+                                                        labels: <%- JSON.stringify(s.labels) %>,
                                                         datasets: [{
-                                                        label: '',
-                                                        data: [<%=  s.data %>],
-                                                        backgroundColor: '#8fe590',
-                                                        borderColor: '#8fe590',
-                                                        borderWidth: 1
+                                                                label: '',
+                                                                data: [<%= s.data %>],
+                                                                backgroundColor: '#8fe590',
+                                                                borderColor: '#8fe590',
+                                                                borderWidth: 2,
+                                                                tension:0.1,
                                                         }]
                                                 },
                                                 options: {
                                                         plugins: {legend: false,},
                                                         legend: {enabled: false,},
-                                                        scales: {
-                                                                yAxes: [{
-                                                                ticks: {
-                                                                
-                                                                        min: 0,
-                                                                        max: 252,
-                                                                        callback: function(value){return value+ "%"}
-                                                                        },  
-                                                                        scaleLabel: {
-                                                                        display: false,
-                                                                        labelString: "Percentage"
-                                                                        }
-                                                                }],
-                                                                xAxes: [{
-                                                                        type:'time',
-                                                                }]
-                                                        },
                                                         title: {
-                                                        display: false,
+                                                        display: true,
                                                         text: 'Micronutrients',
                                                         fontSize: 20
                                                 },
-                                                }
+                                                elements: {
+                                                        point: {
+                                                                radius: 0
+                                                        }
+                                                }  
+                                                },
+                                                responsive: true,
+                                                maintainAspectRatio: false,
                                                 }); 
                                         </script>
                                 </div>

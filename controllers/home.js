@@ -19,12 +19,8 @@ function index(req, res) {
             T: x.T,
             data: x.daily.map(y => y.c),
             labels: x.daily.map(y => y.t.toLocaleDateString('en-US'))
+            // labels: x.daily.map(y => y.t)
         }))
-        // stock.forEach(s => {
-        //     dailyStocks.T = s.T;
-        //     dailyStocks.data = s.daily.map(x => x.c)
-        //     dailyStocks.labels = s.daily.map(x => x.t.toLocaleDateString('en-US'))
-        // });
         res.render('home', { dailyStocks });
     })
     Stock.findOne({}, function(err, stock) {
