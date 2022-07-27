@@ -89,6 +89,10 @@ function show(req, res) {
                 .then(res => res.json())
                 .then(s => {
                     console.log(s);
+                    if (s.status === 'NOT_FOUND') {
+                        res.redirect('/');
+                        return;
+                    }
                     let sInfo = new StockInfo ({
                         ticker: s.results.ticker,
                         name: s.results.name,
