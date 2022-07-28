@@ -72,19 +72,26 @@ function newStock(req, res) {
 
 function create(req, res) {
     req.body.dateAdded = new Date();
+    req.body.T = req.body.T.toUpperCase();
     UserStockList.findOne({user:req.user._id}, function(err, user) {
-        if (user) {
-            user.portfolio.push(req.body);
-            user.save();
-        } else {
-            const newUserList = new UserStockList({
-                user: req.user._id,
-                userName: req.user.name,
-                userAvatar: req.user.avatar,
-                portfolio: [req.body]
-            })
-            newUserList.save();
-        }
-        res.redirect('/portfolios');
-    })
+        Stock.findOne({T:req.body.T}, function(err, stock) {
+            if (stock) {
+                if (user) {
+                    user.portfolio.push(req.body);
+                    user.save();
+                } else {
+                    const newUserList = new UserStockList({
+                        user: req.user._id,
+                        userName: req.user.name,
+                        userAvatar: req.user.avatar,
+                        portfolio: [req.body]
+                    })
+                    newUserList.save();
+                }
+                res.redirect('/portfolios');
+            } else {
+                res.redirect('/portfolios');
+            }
+        });
+    });
 }

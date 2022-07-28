@@ -10,9 +10,8 @@ module.exports = {
 }
 
 function show(req, res) {
-    console.log('show function running')
     if (req.params.id === 'search') {
-        StockInfo.findOne({ticker:req.query.T}, (err, stock) => {
+        StockInfo.findOne({ticker:req.query.T.toUpperCase()}, (err, stock) => {
             if (!stock) {
                 fetch(`${rootURL}v3/reference/tickers/${req.query.T}?apiKey=${token}`)
                 .then(res => res.json())
@@ -42,12 +41,10 @@ function show(req, res) {
                             logo_url: s.results.branding.logo_url,
                         }
                     });
-                    console.log('true path');
                     sInfo.save();
                     res.render('stocks/show', { stock: sInfo });
                 });  
             } else {
-                console.log('false path')
                 res.render('stocks/show', { stock });
             }
         })        
@@ -82,12 +79,10 @@ function show(req, res) {
                             logo_url: s.results.branding.logo_url,
                         }
                     });
-                    console.log('true path');
                     sInfo.save();
                     res.render('stocks/show', { stock: sInfo });
                 });  
             } else {
-                console.log('false path')
                 res.render('stocks/show', { stock });
             }
         })
