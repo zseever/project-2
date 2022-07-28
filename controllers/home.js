@@ -26,7 +26,7 @@ function index(req, res) {
         let today = new Date();
         let yesterday = new Date();
         yesterday.setDate(today.getDate() - 1);
-        console.log(stock.daily[stock.daily.length-1].t.toDateString)
+        console.log(stock.daily[stock.daily.length-1].t.toDateString())
         console.log(yesterday.toDateString())
         if (stock.daily[stock.daily.length-1].t.toDateString() !== yesterday.toDateString()) {
             console.log('Updating stocks for new day')
