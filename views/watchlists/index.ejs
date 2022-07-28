@@ -24,7 +24,9 @@
               <tr>
                 <td><a href="/stocks/<%= stock.T %>"><%= stock.T %></a></td>
                 <td><%= stocksList[stock.T].close %></td>
-                <td><%= (stocksList[stock.T].close - stocksList[stock.T].open).toFixed(2) %></td>
+                <td class="<%= (stocksList[stock.T].close - stocksList[stock.T].open)>=0 ? 'profit' : 'loss' %>">
+                    <%= (stocksList[stock.T].close - stocksList[stock.T].open).toFixed(2) %>
+                </td>
                 <td><%= stocksList[stock.T].volume.toFixed(0).toLocaleString('en-US') %></td>
                 <td class="small-col">
                     <form action="/watchlists/<%= stock.T %>?_method=DELETE" method="POST">

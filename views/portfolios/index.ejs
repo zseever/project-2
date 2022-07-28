@@ -3,8 +3,12 @@
     <div class="main-container">
         <div class="flex-container">
             <h1><%= user.name %> - Stock Portfolio</h1>
-            <h2 class="portfolio-h2">Total Portfolio Value: $<%= totalVal.toFixed(2) %> </h2>
-            <h2 class="portfolio-h2">Total PnL: $<%= pnl.toFixed(2) %> </h2>
+            <h2 class="portfolio-h2">
+                Total Portfolio Value: <span class="<%= totalVal >= 0 ? 'profit' : 'loss' %>">$<%= totalVal.toFixed(2) %></span> 
+            </h2>
+            <h2 class="portfolio-h2">
+                Total PnL: <span class="<%= pnl >= 0 ? 'profit' : 'loss' %>">$<%= pnl.toFixed(2) %> </span>
+            </h2>
         </div>
         <table id="portfolio-table">
             <thead>
@@ -25,7 +29,8 @@
                 <td><%= stock.shares %></td>
                 <td>$<%= stock.avgPrice %></td>
                 <td>$<%= stocksList[stock.T] %></td>
-                <td>$<%= ((stocksList[stock.T] - stock.avgPrice)*stock.shares).toFixed(2) %></td>
+                <td class="<%= ((stocksList[stock.T] - stock.avgPrice)*stock.shares)>= 0 ? 'profit' : 'loss' %>">
+                    $<%= ((stocksList[stock.T] - stock.avgPrice)*stock.shares).toFixed(2) %></td>
                 <td class="small-col">
                     <form action="/portfolios/<%= stock.T %>/edit" method="GET">
                         <button class="edit-btn">Edit</button>
