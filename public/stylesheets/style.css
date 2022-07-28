@@ -9,19 +9,28 @@ html {
   width:100%;
   margin:0;
   padding:0;
+  overflow: hidden;
 }
 
 body {
   height:100%;
   width:100%;
-  padding: 20px;
   font-size: 2vmin;
   background-color: rgb(22, 21, 21);
   color: #8fe590;
 }
 
+input {
+  border:none;
+}
+
 .daily-stock-head {
   font-size: 3.5vmin;
+  
+}
+
+nav {
+  padding-top:1vh;
 }
 
 nav > a {
@@ -31,6 +40,7 @@ nav > a {
 }
 
 nav > a:hover {
+  box-sizing:border-box;
   border:0.2vmin solid #8fe590;
   background-color: rgb(75, 73, 73);
 }
@@ -38,6 +48,10 @@ nav > a:hover {
 a {
   color: #8fe590;
   text-decoration: none;
+}
+
+table {
+  border-spacing: 0.1vmin;
 }
 
 td a {
@@ -74,6 +88,20 @@ header {
   align-items: center;
 }
 
+th, td {
+  width: 12vw;
+  border: 0.3vmin solid #8fe590;
+}
+
+td {
+  text-align: center;
+}
+
+tr a:hover {
+  color:rgb(112, 112, 243);
+  text-decoration: underline;
+}
+
 .cont {
   text-align: center;
   display:flex;
@@ -84,37 +112,59 @@ header {
   width:100vw;
 }
 
+.show-cont {
+  margin-top:5vh;
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  height:95vh;
+  width:100vw;
+}
+
 .stock-cont {
+  padding:3vmin 2vmin 2vmin 2vmin;
+  border-radius:1vmin;
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  row-gap:5vh;
-  column-gap:2vw;
+  row-gap:3vh;
+  column-gap:1.5vw;
   margin-top:3vh;
+  margin-bottom:3vh;
+  background-color:rgb(44, 43, 43);
 }
 
 .stock {
   height:25vh;
   width:30vw;
-  border: 1px solid #8fe590;
+  border: 0.3vmin solid #8fe590;
+  border-radius: 0.2vmin;
   background-color: rgb(75, 73, 73);
   display:grid;
   grid-template-rows: 11fr 11fr;
-
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
 }
 
 .stock:hover {
   position:absolute;
   z-index:1;
-  height:40vh;
-  width:50vw;
-  border:0.5vmin solid #8fe590;
-  box-shadow: 0.5vw 0.5vh black;
+  transform: scale(1.1);
+  border:0.3vmin solid #8fe590;
+  box-shadow: 0.3vw 0.3vh black;
+  border-radius: 0.3vmin;
 }
 
+.canvas-div {
+  width:30vw;
+  height:20vh;
+}
 
 .home-header-cont {
   margin-top: 2vh;
+  display:flex;
 }
 
 .stock-title {
@@ -133,13 +183,15 @@ header {
 
 
 .grn-btn {
+  box-sizing:border-box;
   border: 0.2vh solid #8fe590;
   background-color: rgb(75, 73, 73);
-  padding:.5vh;
+  padding:.3vh;
   color: #8fe590;  
   cursor:pointer;
   width:10vw;
   height:3.4vh;
+  font-size:1.3vmin;
 }
 
 .add-wl-button {
@@ -152,7 +204,11 @@ header {
 }
 
 .btn-input {
-  height:2.7vh;
+  height: 3.3vh;
+  width: 12vw;
+  font-size:1.5vmin;
+  color:rgb(111, 107, 107);
+  text-align: center;
 }
 
 .add-wl-button:hover , .add-button:hover, .grn-btn:hover {
@@ -160,30 +216,18 @@ header {
   cursor: pointer;
 }
 
-
-th, td {
-  width: 12vw;
-  border: 1px solid #8fe590;
-}
-
-td {
-  text-align: center;
-}
-
-tr a:hover {
-  color:rgb(112, 112, 243);
-  text-decoration: underline;
-}
-
 .small-col {
   width:7vw;
 }
 
 .del-btn {
+  text-align: center;
   background-color: rgb(208, 62, 62);
   border:0.2vh solid black;
+  border-radius:0.3vmin;
   width:2.3vw;
-  height:2.3vh;
+  height:2.8vh;
+  font-size:2vmin;
 }
 
 .del-btn:hover {
@@ -192,9 +236,12 @@ tr a:hover {
 }
 
 .edit-btn {
+  border-radius:0.3vmin;
   color: #8fe590;
   background-color:rgb(75, 73, 73);
   border:0.2vh solid black;
+  font-size:1.5vmin;
+  width:4vw;
 }
 
 .edit-btn:hover {
@@ -218,26 +265,35 @@ tr a:hover {
   grid-column-end: span 1;
 }
 
-#add-watchlist label, #add-watchlist input {
-  height:2vh;
-  width:5vw;
-}
-
-#add-stock-portfolio > * {
-  margin:1vh 0;
+#add-watchlist {
+  width:25vw;
+  display:flex;
+  justify-content: space-between;
 }
 
 .flex-container {
+  border-radius: 0.5vmin;
+  padding:2vh 2vw;
+  background-color: rgb(75, 73, 73);
   text-align: center;
-  width:75vw;
+  width:70vw;
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:2vh 0;
+  gap:1vh 0;
+  box-shadow: 0.4vw 0.4vh 0.4vmin black;
 }
 
 .link {
   color:rgb(112, 112, 243);
   text-decoration: underline;
+}
+
+.add-stock-portfolio > * {
+  margin:1vh 0;
+}
+
+.portfolio-h2 {
+  font-size:2vmin;
 }

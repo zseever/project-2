@@ -19,10 +19,12 @@ function index(req, res) {
                 stocksList[x.T] = x.daily[x.daily.length-1].c;
             });
             let pnl = 0;
+            let totalVal = 0;
             userLists.portfolio.forEach(function(stock) {
                 pnl += ((stocksList[stock.T] - stock.avgPrice)*stock.shares)
+                totalVal += (stocksList[stock.T] * stock.shares)
             });
-            res.render('portfolios/index', { userLists , stocksList, pnl });
+            res.render('portfolios/index', { userLists , stocksList, pnl, totalVal });
         })
     })
 }
@@ -46,17 +48,6 @@ function update(req, res) {
             stock.save();
             res.redirect('/portfolios')
         })
-        
-        
-        // (err,userLists) => {
-        // console.log(req.params.id);
-        // console.log(userLists);
-        // let stock = userLists.portfolio.find(x => x.T === req.params.id);
-        //     stock.shares = req.body.shares;
-        //     stock.avgPrice = req.body.avgPrice;
-        //     console.log(stock);
-        //     res.redirect('/portfolios');
-        // })
 };
 
 function edit(req, res) {

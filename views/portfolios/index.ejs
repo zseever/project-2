@@ -1,8 +1,11 @@
 <%- include('../partials/header') %>
 
     <div class="main-container">
-        <h1><%= user.name %> - Stock Portfolio</h1>
-        <h2>Total PnL: $<%= pnl.toFixed(2) %> </h2>
+        <div class="flex-container">
+            <h1><%= user.name %> - Stock Portfolio</h1>
+            <h2 class="portfolio-h2">Total Portfolio Value: $<%= totalVal.toFixed(2) %> </h2>
+            <h2 class="portfolio-h2">Total PnL: $<%= pnl.toFixed(2) %> </h2>
+        </div>
         <table id="portfolio-table">
             <thead>
                 <tr>

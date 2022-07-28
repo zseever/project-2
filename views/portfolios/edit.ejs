@@ -4,10 +4,12 @@
     <h1>Edit Portfolio <%= editStock.T %> Stock</h1>
     <form id="add-stock-portfolio" action="/portfolios/<%= editStock.T %>?_method=PUT" method="POST">
         <label># of Shares Owned</label>
-        <input type="number" value="<%= editStock.shares %>" name="shares">
+        <input type="number" min="0" step="1" autocomplete="off" spellcheck="false" 
+        value="<%= editStock.shares %>" name="shares">
         <br>
         <label>Average Price Paid</label>
-        <input type="number" value="<%= editStock.avgPrice %>" name="avgPrice">
+        <input type="number" autocomplete="off" spellcheck="false" min="0"
+        step="0.01" value="<%= editStock.avgPrice %>" name="avgPrice">
         <br>
         <button class="grn-btn" type="submit">Update Stock</button>
     </form>

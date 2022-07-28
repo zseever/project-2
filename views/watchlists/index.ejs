@@ -1,10 +1,12 @@
 <%- include('../partials/header') %>
 
     <div class="main-container">
-        <h1><%= user.name %> - Stock Watchlist</h1>
+        <div class="flex-container">
+            <h1><%= user.name %> - Stock Watchlist</h1>
+        </div>
         <form id="add-watchlist" action="/watchlists" method="POST">
-            <label>Stock Ticker</label>
-            <input type="text" name="T">
+            <input class="btn-input" type="text" placeholder="Enter Ticker" 
+            autocomplete="off" spellcheck="false" name="T">
             <button class="add-wl-button grn-btn" type="submit">Add Stock to Watchlist</button>
         </form>
         <table id="portfolio-table">

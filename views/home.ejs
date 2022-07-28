@@ -3,7 +3,9 @@
                 <div>
                         <div class="home-header-cont">
                                 <form action="stocks/search" method="GET">
-                                       <input class="btn-input" type="text" name="T">
+                                       <input class="btn-input" type="text" 
+                                       placeholder="Enter Ticker" autocomplete="off" 
+                                       name="T" spellcheck="false">
                                        <button type="submit" class="grn-btn">Search Ticker</button>
                                 </form>
                                 <h1 class="daily-stock-head">Daily Stocks</h1>
@@ -14,7 +16,9 @@
                                         <a href="/stocks/<%= s.T %>">
                                         <div class="stock">
                                                 <p class="stock-title"><%= s.T %></p>
-                                                <canvas id="<%= s.T %>"></canvas>
+                                                <div class="canvas-div">
+                                                        <canvas id="<%= s.T %>"></canvas>
+                                                </div>
                                                 <script>
                                                         new Chart(document.getElementById("<%= s.T %>"), {
                                                         type: 'line',
@@ -34,17 +38,17 @@
                                                                 legend: {enabled: false,},
                                                                 title: {
                                                                 display: true,
-                                                                text: 'Micronutrients',
+                                                                text: '',
                                                                 fontSize: 20
                                                         },
                                                         elements: {
                                                                 point: {
                                                                         radius: 0
                                                                 }
-                                                        }  
-                                                        },
+                                                        },  
                                                         responsive: true,
                                                         maintainAspectRatio: false,
+                                                        },
                                                         }); 
                                                 </script>
                                         </div>
