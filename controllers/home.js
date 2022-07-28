@@ -9,7 +9,6 @@ const rootURL = 'https://api.polygon.io/'
 module.exports = {
     index,
     fetchDailyStocks,
-    // show
 }
 
 

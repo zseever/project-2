@@ -18,7 +18,7 @@
           <tbody>
             <% userLists.portfolio.forEach(function(stock) { %>
               <tr>
-                <td><a href="/<%= stock.T %>"><%= stock.T %></a></td>
+                <td><a href="/stocks/<%= stock.T %>"><%= stock.T %></a></td>
                 <td><%= stock.shares %></td>
                 <td>$<%= stock.avgPrice %></td>
                 <td>$<%= stocksList[stock.T] %></td>

@@ -1,15 +1,17 @@
 <%- include('../partials/header') %>
 
-<h1>Edit Portfolio <%= editStock.T %> Stock</h1>
-<form id="add-stock-portfolio" action="/portfolios/<%= editStock.T %>?_method=PUT" method="POST">
-    <label># of Shares Owned</label>
-    <input type="number" value="<%= editStock.shares %>" name="shares">
-    <br>
-    <label>Average Price Paid</label>
-    <input type="number" value="<%= editStock.avgPrice %>" name="avgPrice">
-    <br>
-    <button type="submit">Update Stock</button>
-</form>
+<div class="cont">
+    <h1>Edit Portfolio <%= editStock.T %> Stock</h1>
+    <form id="add-stock-portfolio" action="/portfolios/<%= editStock.T %>?_method=PUT" method="POST">
+        <label># of Shares Owned</label>
+        <input type="number" value="<%= editStock.shares %>" name="shares">
+        <br>
+        <label>Average Price Paid</label>
+        <input type="number" value="<%= editStock.avgPrice %>" name="avgPrice">
+        <br>
+        <button class="grn-btn" type="submit">Update Stock</button>
+    </form>
+</div>
 
 
 <%- include('../partials/footer') %>

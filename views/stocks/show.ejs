@@ -1,13 +1,16 @@
 <%- include('../partials/header') %>
-
-<h1><%= stock.name %></h1>
-<p>Ticker: <%= stock.ticker %></p>
-<p>Description: <%= stock.description %></p>
-<a class="stock-url" href="<%= stock.homepage_url%>" target="_blank">Website: <%= stock.name %></a>
-<p>Address: <%= stock.address.address1 %>, <%= stock.address.city %>, <%= stock.address.state %>, <%= stock.address.zipcode %></p>
-<p>Currency: <%= stock.currency.toUpperCase() %></p>
-<p>Employees: <%= stock.employees.toLocaleString('en-US') %></p>
-<p>Shares Outstanding: <%= stock.shares_outstanding.toLocaleString('en-US') %></p>
+<div class="cont">
+    <div class="flex-container">
+        <h1><%= stock.name %></h1>
+        <p>Ticker: <%= stock.ticker %></p>
+        <p><%= stock.description %></p>
+        <a class="stock-url" href="<%= stock.homepage_url%>" target="_blank">Website: <span class="link"><%= stock.name %></span></a>
+        <p>Address: <%= stock.address.address1 %>, <%= stock.address.city %>, <%= stock.address.state %>, <%= stock.address.zipcode %></p>
+        <p>Currency: <%= stock.currency.toUpperCase() %></p>
+        <p>Employees: <%= stock.employees.toLocaleString('en-US') %></p>
+        <p>Shares Outstanding: <%= stock.shares_outstanding.toLocaleString('en-US') %></p>
+    </div>
+</div>
 
 
 <%- include('../partials/footer') %>
