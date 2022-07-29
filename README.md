@@ -18,6 +18,7 @@ There is also functionality to log in and this unlocks 2 new features - Watchlis
 - Express
 - EJS
 - Google OAuth
+- Polygon Stock API
 
 # Getting Started
 
