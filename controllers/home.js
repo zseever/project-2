@@ -32,14 +32,14 @@ function index(req, res) {
 }
 
 function fetchDailyStocks(today,yesterday) {
-    let d = today.getDate()-1;
-    let m = (today.getMonth()+1).length === 2 ? `${today.getMonth()+1}` : `0${today.getMonth()+1}`
-    let y = today.getFullYear();
+    let d = yesterday.getDate().toString().length === 2 ? `${yesterday.getDate()}` : `0${yesterday.getDate()}`;
+    let m = (yesterday.getMonth()+1).toString().length === 2 ? `${yesterday.getMonth()+1}` : `0${yesterday.getMonth()+1}`
+    let y = yesterday.getFullYear();
     let fetchDate = `${y}-${m}-${d}`
     fetch(`${rootURL}v2/aggs/grouped/locale/us/market/stocks/${fetchDate}?adjusted=true&apiKey=${token}`)
     .then(res => res.json())
     .then(stockData => {
-        if (stockData.resultsCount === 0) {
+        if (stockData.resultsCount === 0 || stockData.status === 'NOT_AUTHORIZED') {
             console.log('No data for today');
             return
         } else {
