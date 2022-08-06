@@ -18,17 +18,17 @@ function index(req, res) {
         }))
         res.render('home', { dailyStocks });
     })
-    Stock.findOne({}, function(err, stock) {
-        let today = new Date();
-        let yesterday = new Date();
-        yesterday.setDate(today.getDate() - 1);
-        if (stock.daily[stock.daily.length-1].t.toDateString() !== yesterday.toDateString()) {
-            console.log('Updating stocks for new day')
-            fetchDailyStocks(today,yesterday);
-        } else {
-            console.log('Stocks are already up to date');
-        }
-    })
+    // Stock.findOne({}, function(err, stock) {
+    //     let today = new Date();
+    //     let yesterday = new Date();
+    //     yesterday.setDate(today.getDate() - 1);
+    //     if (stock.daily[stock.daily.length-1].t.toDateString() !== yesterday.toDateString()) {
+    //         console.log('Updating stocks for new day')
+    //         fetchDailyStocks(today,yesterday);
+    //     } else {
+    //         console.log('Stocks are already up to date');
+    //     }
+    // })
 }
 
 function fetchDailyStocks(today,yesterday) {
