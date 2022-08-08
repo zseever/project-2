@@ -11,6 +11,17 @@ module.exports = {
 
 function index(req, res) {
     Stock.find({T: { $in: ['AAPL','AMZN','MSFT','META','NVDA','GOOG','WMT','TSLA','GME']}}, function(err, stock) {
+        Stock.findOne({}, function(err, stock) {
+            let today = new Date();
+            let yesterday = new Date();
+            yesterday.setDate(today.getDate() - 1);
+            if (stock.daily[stock.daily.length-1].t.toDateString() !== yesterday.toDateString()) {
+                console.log('Updating stocks for new day')
+                fetchDailyStocks(today,yesterday);
+            } else {
+                console.log('Stocks are already up to date');
+            }
+        })
         let dailyStocks = stock.map(x => ({
             T: x.T,
             data: x.daily.map(y => y.c),
@@ -18,17 +29,6 @@ function index(req, res) {
         }))
         res.render('home', { dailyStocks });
     })
-    // Stock.findOne({}, function(err, stock) {
-    //     let today = new Date();
-    //     let yesterday = new Date();
-    //     yesterday.setDate(today.getDate() - 1);
-    //     if (stock.daily[stock.daily.length-1].t.toDateString() !== yesterday.toDateString()) {
-    //         console.log('Updating stocks for new day')
-    //         fetchDailyStocks(today,yesterday);
-    //     } else {
-    //         console.log('Stocks are already up to date');
-    //     }
-    // })
 }
 
 function fetchDailyStocks(today,yesterday) {
